@@ -6,6 +6,7 @@ using System.Threading.Tasks;
 
 namespace Top_CourseProject_part2
 {
+    [Serializable]
     public class Hourly : Employee
     {
         // attributes
@@ -13,13 +14,13 @@ namespace Top_CourseProject_part2
         private double hoursWorked;
 
         // constructors
-        public Hourly() : base() 
+        public Hourly() : base()
         {
             hourlyRate = 0.0;
             hoursWorked = 0.0;
         }
 
-        public Hourly(string firstName, string lastName, string ssn, DateTime hireDate, 
+        public Hourly(string firstName, string lastName, string ssn, DateTime hireDate,
             Benefits benefits, double hourlyRate, double hoursWorked) : base(firstName, lastName, ssn, hireDate, benefits)
         {
             this.hourlyRate = hourlyRate;
@@ -27,20 +28,20 @@ namespace Top_CourseProject_part2
         }
 
         // behaviors
-        public override double CalculatePay() 
+        public override double CalculatePay()
         {
             double pay = 0.0;
 
-            if(hourlyRate > 40.0) 
+            if (hourlyRate > 40.0)
             {
                 double basepay = 40.0 * hourlyRate;
                 double overtime = (hoursWorked = 40.0) * hourlyRate * 1.5;
                 pay += basepay + overtime;
-                
+
             }
             else
             {
-                pay = hoursWorked * hourlyRate;                
+                pay = hoursWorked * hourlyRate;
             }
 
             return pay;
@@ -60,5 +61,10 @@ namespace Top_CourseProject_part2
             set { hourlyRate = value; }
         }
 
+        public double HoursWorked
+        {
+            get { return HoursWorked; }
+            set { HoursWorked = value; }
+        }
     }
 }
