@@ -1,85 +1,45 @@
 using System;
 using System.Collections.Generic;
-using System.ComponentModel;
-using System.Data;
-using System.Drawing;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
-using System.Windows.Forms;
 
 namespace Top_CourseProject_part2
 {
-    public partial class InputForm : Form
+    [Serializable]
+    public class Salary : Employee
     {
-        public InputForm()
+        // attributes
+        private double annualSalary;
+
+        // constructors
+        public Salary() : base()
         {
-            InitializeComponent();
+            annualSalary = 0.0;
+        }
+        public Salary(string firstName, string lastName,
+            string ssn, DateTime hireDate,
+            Benefits benefits, double annualSalary) : base(firstName, lastName, ssn, hireDate, benefits)
+        {
+            this.annualSalary = annualSalary;
         }
 
-        private void SubmitButton_Click(object sender, EventArgs e)
+        // behaviors
+        public override double CalculatePay()
         {
-            this.DialogResult = DialogResult.OK;
-            this.Hide();
+            return annualSalary / 26.0;
         }
 
-        private void ExitButton_Click(object sender, EventArgs e)
+        public override string ToString()
         {
-            this.DialogResult= DialogResult.Cancel;
-            this.Hide();
+            return base.ToString() + ", annualSalary=" + annualSalary.ToString("C2");
         }
 
-        private void textBox1_TextChanged(object sender, EventArgs e)
+        // properties
+        public double AnnualSalary
         {
-
-        }
-
-        private void textBox2_TextChanged(object sender, EventArgs e)
-        {
-
-        }
-
-        private void label2_Click(object sender, EventArgs e)
-        {
-
-        }
-
-        private void InputForm_Load(object sender, EventArgs e)
-        {
-
-        }
-
-        private void HourlyRadioButton_CheckedChanged(object sender, EventArgs e)
-        {
-            if(HourlyRadioButton.Checked)
-            {
-                // hide the salary items
-                SalaryLabel.Visible = false;
-                SalaryTextBox.Visible = false;
-
-                // show the hourly items
-                HourlyRateLabel.Visible = true;
-                HourlyRateTextBox.Visible = true;
-                HoursWorkedLabel.Visible = true;
-                HoursWorkedTextBox.Visible = true;
-
-            }
-        }
-
-        private void SalaryRadioButton_CheckedChanged(object sender, EventArgs e)
-        {
-            if (SalaryRadioButton.Checked)
-            {
-                // show the salary items
-                SalaryLabel.Visible = true;
-                SalaryTextBox.Visible = true;
-
-                // hide the hourly items
-                HourlyRateLabel.Visible = false;
-                HourlyRateTextBox.Visible = false;
-                HoursWorkedLabel.Visible = false;
-                HoursWorkedTextBox.Visible = false;
-            }
+            get { return annualSalary; }
+            set { annualSalary = value; }
         }
     }
 }
