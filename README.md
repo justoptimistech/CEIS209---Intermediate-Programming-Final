@@ -1,6 +1,6 @@
 This course explores structured and object-oriented program development. Topics include language syntax, selection and iteration control structures, functions, debugger tools and techniques, objects, classes, encapsulation, polymorphism and inheritance. An integrated development environment is used to program, design, code and test structured and object-oriented applications. A programming language such as C# is used.
 
-Background
+
 This course project is designed to a course project create a Graphical User Interface (GUI) while practicing basic programming concepts. 
 
 Scenario:
