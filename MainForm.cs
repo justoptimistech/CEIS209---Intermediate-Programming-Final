@@ -60,7 +60,7 @@ namespace Top_CourseProject_part2
                     double salary = double.Parse(frmInput.SalaryTextBox.Text);
                     emp = new Salary(fName, lName, ssn, hireDate, ben, salary);
                 }
-                else if (frmInput.SalaryRadioButton.Checked)
+                else if (frmInput.HourlyRadioButton.Checked)
                 {
                     double hourlyRate = double.Parse(frmInput.HourlyRateTextBox.Text);
                     double hoursWorked = double.Parse(frmInput.HoursWorkedTextBox.Text);
@@ -157,7 +157,15 @@ namespace Top_CourseProject_part2
 
         private void PrintPaychecksButton_Click(object sender, EventArgs e)
         {
-            MessageBox.Show("Printing paychecks for all employees...");
+            foreach(Employee emp in EmployeesListBox.Items)
+            {
+                string line1 = "Pay To: " + emp.FirstName + " " + emp.LastName;
+                string line2 = "Amount Of: " + emp.CalculatePay().ToString("C2");
+
+                string output = "Paycheck:\n\n" + line1 + "\n" + line2;
+
+                MessageBox.Show(output);
+            }
         }
 
         private void EmployeesListBox_DoubleClick(object sender, EventArgs e)
@@ -220,7 +228,7 @@ namespace Top_CourseProject_part2
                 return; // end the method
             }
 
-    DialogResult result = frmUpdate.ShowDialog();
+            DialogResult result = frmUpdate.ShowDialog();
 
             //if cancelled, stop the method
             if (result == DialogResult.Cancel)
@@ -263,6 +271,9 @@ namespace Top_CourseProject_part2
 
             // add the new employee to the listbox
             EmployeesListBox.Items.Add(newEmp);
+
+            // write all date to the file
+            WriteEmpsToFile();
 
 
 
